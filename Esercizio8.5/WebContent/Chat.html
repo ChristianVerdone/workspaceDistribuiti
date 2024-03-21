@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+	<title>Simplified Web-Socket based Chat</title>
+	<script type="application/javascript">
+		var Console={};
+		
+		Console.write=(function(message){
+			var console=document.getElementById('console');
+			var p=document.createElement('p');
+		 	p.innerHTML=message;
+		 	console.appendChild(p);
+		});
+		
+		var Chat={};
+			
+		Chat.socket=null;
+	
+		Chat.sendMessage=(function(){
+			var message=document.getElementById('chat').value;
+			if(message != ''){
+				Chat.socket.send(message);
+				document.getElementById('chat').value='';
+			}
+			
+		});
+		
+		Chat.connect=(function(host){
+			Chat.socket=new WebSocket(host);
+			
+			Chat.socket.onopen=function(){
+				Console.write('Info: La connessione &egrave stata attivata.');
+				document.getElementById('chat').onkeydown=function(event){
+					if(event.keyCode==13){
+						Chat.sendMessage();
+					}
+				};
+			};
+			
+			Chat.socket.onclose=function(){
+				document.getElementById('chat').onkeydown=null;
+				Console.write("Info: La connessione &egrave stata chiusa.");
+			};
+		
+			Chat.socket.onmessage=function(message){
+				Console.write(message.data);
+			};
+		});
+			
+		Chat.connect('ws://127.0.0.1:8080/Esercizio8.5/websocket/chat')
+	</script>
+</head>
+<body>
+	<!-- Text box for insert String -->
+	<Input type="text" placeholder="digita e premi invio per spedire il messaggio" id="chat" />
+	
+	<!--  Regione dove l'output è scritto -->
+	<div id="console"></div>
+</body>
+</html>

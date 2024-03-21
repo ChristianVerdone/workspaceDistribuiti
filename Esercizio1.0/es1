@@ -1,0 +1,3 @@
+prima di far partire il server avviare il registro nella cartella contente il codice copilato (.class)
+
+start rmiregistry 

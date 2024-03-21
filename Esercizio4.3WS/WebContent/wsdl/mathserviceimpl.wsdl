@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="MathServiceImplService" targetNamespace="http://math/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://math/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://math/" version="1.0" xmlns:tns="http://math/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="divide" type="tns:divide"/>
+
+  <xs:element name="divideResponse" type="tns:divideResponse"/>
+
+  <xs:element name="factOf" type="tns:factOf"/>
+
+  <xs:element name="factOfResponse" type="tns:factOfResponse"/>
+
+  <xs:element name="multiply" type="tns:multiply"/>
+
+  <xs:element name="multiplyResponse" type="tns:multiplyResponse"/>
+
+  <xs:complexType name="divide">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:double"/>
+      <xs:element name="arg1" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="divideResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="factOf">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="factOfResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="multiply">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:double"/>
+      <xs:element name="arg1" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="multiplyResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="divideResponse">
+    <wsdl:part name="parameters" element="tns:divideResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="divide">
+    <wsdl:part name="parameters" element="tns:divide">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="multiply">
+    <wsdl:part name="parameters" element="tns:multiply">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="factOfResponse">
+    <wsdl:part name="parameters" element="tns:factOfResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="factOf">
+    <wsdl:part name="parameters" element="tns:factOf">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="multiplyResponse">
+    <wsdl:part name="parameters" element="tns:multiplyResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MathService">
+    <wsdl:operation name="divide">
+      <wsdl:input name="divide" message="tns:divide">
+    </wsdl:input>
+      <wsdl:output name="divideResponse" message="tns:divideResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="factOf">
+      <wsdl:input name="factOf" message="tns:factOf">
+    </wsdl:input>
+      <wsdl:output name="factOfResponse" message="tns:factOfResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="multiply">
+      <wsdl:input name="multiply" message="tns:multiply">
+    </wsdl:input>
+      <wsdl:output name="multiplyResponse" message="tns:multiplyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MathServiceImplServiceSoapBinding" type="tns:MathService">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="divide">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="divide">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="divideResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="factOf">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="factOf">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="factOfResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="multiply">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="multiply">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="multiplyResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MathServiceImplService">
+    <wsdl:port name="MathServiceImplPort" binding="tns:MathServiceImplServiceSoapBinding">
+      <soap12:address location="http://localhost:8080/Esercizio4.3WS/services"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

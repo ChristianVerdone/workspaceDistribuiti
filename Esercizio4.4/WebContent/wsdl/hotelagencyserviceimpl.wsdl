@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="HotelAgencyServiceImplService" targetNamespace="http://hotelAgency.unisannio.it/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://hotelAgency.unisannio.it/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://hotelAgency.unisannio.it/" version="1.0" xmlns:tns="http://hotelAgency.unisannio.it/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="getConfirmationDetails" type="tns:getConfirmationDetails"/>
+
+  <xs:element name="getConfirmationDetailsResponse" type="tns:getConfirmationDetailsResponse"/>
+
+  <xs:element name="getHotelDetails" type="tns:getHotelDetails"/>
+
+  <xs:element name="getHotelDetailsResponse" type="tns:getHotelDetailsResponse"/>
+
+  <xs:element name="listMyBooking" type="tns:listMyBooking"/>
+
+  <xs:element name="listMyBookingResponse" type="tns:listMyBookingResponse"/>
+
+  <xs:element name="reserve" type="tns:reserve"/>
+
+  <xs:element name="reserveResponse" type="tns:reserveResponse"/>
+
+  <xs:element name="search" type="tns:search"/>
+
+  <xs:element name="searchResponse" type="tns:searchResponse"/>
+
+  <xs:complexType name="getHotelDetails">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getHotelDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:hotel"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hotel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="city" type="xs:string"/>
+      <xs:element name="id" type="xs:int"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="rates" nillable="true" type="tns:rate"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="end" type="xs:dateTime"/>
+      <xs:element name="hotelId" type="xs:int"/>
+      <xs:element name="price" type="xs:double"/>
+      <xs:element minOccurs="0" name="roomType" type="xs:string"/>
+      <xs:element minOccurs="0" name="start" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="search">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="searchResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reserve">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:rate"/>
+      <xs:element name="arg1" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reserveResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="listMyBooking">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="listMyBookingResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getConfirmationDetails">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getConfirmationDetailsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:order"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="order">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="confirmationDate" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="rate" type="tns:rate"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="search">
+    <wsdl:part name="parameters" element="tns:search">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listMyBooking">
+    <wsdl:part name="parameters" element="tns:listMyBooking">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHotelDetailsResponse">
+    <wsdl:part name="parameters" element="tns:getHotelDetailsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="searchResponse">
+    <wsdl:part name="parameters" element="tns:searchResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="reserveResponse">
+    <wsdl:part name="parameters" element="tns:reserveResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getConfirmationDetailsResponse">
+    <wsdl:part name="parameters" element="tns:getConfirmationDetailsResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getHotelDetails">
+    <wsdl:part name="parameters" element="tns:getHotelDetails">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="reserve">
+    <wsdl:part name="parameters" element="tns:reserve">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listMyBookingResponse">
+    <wsdl:part name="parameters" element="tns:listMyBookingResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getConfirmationDetails">
+    <wsdl:part name="parameters" element="tns:getConfirmationDetails">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HotelAgencyService">
+    <wsdl:operation name="getHotelDetails">
+      <wsdl:input name="getHotelDetails" message="tns:getHotelDetails">
+    </wsdl:input>
+      <wsdl:output name="getHotelDetailsResponse" message="tns:getHotelDetailsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="search">
+      <wsdl:input name="search" message="tns:search">
+    </wsdl:input>
+      <wsdl:output name="searchResponse" message="tns:searchResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reserve">
+      <wsdl:input name="reserve" message="tns:reserve">
+    </wsdl:input>
+      <wsdl:output name="reserveResponse" message="tns:reserveResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listMyBooking">
+      <wsdl:input name="listMyBooking" message="tns:listMyBooking">
+    </wsdl:input>
+      <wsdl:output name="listMyBookingResponse" message="tns:listMyBookingResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConfirmationDetails">
+      <wsdl:input name="getConfirmationDetails" message="tns:getConfirmationDetails">
+    </wsdl:input>
+      <wsdl:output name="getConfirmationDetailsResponse" message="tns:getConfirmationDetailsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HotelAgencyServiceImplServiceSoapBinding" type="tns:HotelAgencyService">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getHotelDetails">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="getHotelDetails">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getHotelDetailsResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="search">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="search">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="searchResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="reserve">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="reserve">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="reserveResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listMyBooking">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="listMyBooking">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listMyBookingResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getConfirmationDetails">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="getConfirmationDetails">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getConfirmationDetailsResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HotelAgencyServiceImplService">
+    <wsdl:port name="HotelAgencyServiceImplPort" binding="tns:HotelAgencyServiceImplServiceSoapBinding">
+      <soap12:address location="http://localhost:8080/Esercizio4.4/services/HotelAgencyServiceImplPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
